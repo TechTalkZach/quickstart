@@ -1,0 +1,154 @@
+
+<html>
+    <head>
+      <title>Token Test Harness</title>
+      <link href='https://fonts.googleapis.com/css?family=Work Sans' rel='stylesheet'>
+      <script src='https://unpkg.com/xrpl@2.2.3'></script>
+      
+      <script>
+        if (typeof module !== "undefined") {
+          const xrpl = require('xrpl')
+        }
+      </script>
+      <style>
+         body{font-family: "Work Sans", sans-serif;padding: 20px;background: #fafafa;font-size:.8em;}
+         h1{font-weight: bold;}
+         input, button {padding: 6px;margin-bottom: 8px;font-size:.8em;}
+         button{font-weight: bold;font-family: "Work Sans", sans-serif;}
+         td{vertical-align: top;padding-right:10px;}
+      </style>
+    </head>
+      <form id="theForm">
+        Choose your ledger instance:  
+        <input type="radio" id="xls" name="server" value="wss://xls20-sandbox.rippletest.net:51233">
+        <label for="xls20">XLS20-NFT</label>
+          
+        <input type="radio" id="tn" name="server" value="wss://s.altnet.rippletest.net:51233" checked>
+        <label for="testnet">Testnet</label>
+          
+        <input type="radio" id="dn" name="server" value="wss://s.devnet.rippletest.net:51233">
+        <label for="devnet">Devnet</label>
+        <br/><br/>
+        <button type="button" onClick="getAccountsFromSeeds()">Get Accounts From Seeds</button>
+        <br/>
+        <textarea id="seeds" cols="40" rows= "2">... You can use this later once you generate seeds</textarea>
+        <br/><br/>
+  
+              <table>
+                <tr valign="top">
+                  <td>
+                    <button type="button" onClick="getAccount('standby')">Get New Standby Account</button>
+                    <table>
+                      <tr valign="top">
+                        <td align="left">
+                          Standby Account<br/>
+                          <input type="text" id="standbyAccountField" size="30" />
+                        </td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          Public Key<br/>
+                          <input type="text" id="standbyPubKeyField" size="30"></input>
+                        </td>
+                        <td align="left">
+                          Private Key<br/>
+                          <input type="text" id="standbyPrivKeyField" size="30"></input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          Seed <br/>
+                          <input type="text" id="standbySeedField" size="30"></input>
+                          <br>
+                        </td>
+                        <td align="left">
+                          XRP Balance <br/>
+                          <input type="text" id="standbyBalanceField" size="30"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                          Amount<br/>
+                          <input type="text" id="standbyAmountField" size="30"></input>
+                        </td>
+                        <td align="left">
+                          Destination Account <br/>
+                        <input type="text" id="standbyDestinationField" size="30"></input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p align="right">
+                            <button type="button" onClick="sendXRP()">Send XRP ↓</button>
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td>
+                    <textarea id="standbyResultField" cols="60" rows="20" ></textarea>
+                  </td>
+                </tr>
+              </table>
+  
+              <table>
+                <tr valign="top">
+                  <td>
+                    <button type="button" onClick="getAccount('operational')">Get New Operational Account</button>
+                    <table>
+                      <tr valign="top">
+                        <td align="left">
+                          Operational Account<br/> <input type="text" id="operationalAccountField" size="30" />
+                        </td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td align="left">Public Key<br/>
+                          <input type="text" id="operationalPubKeyField" size="30" />
+                        </td>
+                        <td align="left">
+                          Private Key<br/>
+                          <input type="text" id="operationalPrivKeyField" size="30"></input>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          Seed <br/>
+                          <input type="text" id="operationalSeedField" size="30"></input>
+                          <br>
+                        </td>
+                        <td align="left">
+                          XRP Balance <br/>
+                          <input type="text" id="operationalBalanceField" size="30" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                          Amount<br/>
+                          <input type="text" id="operationalAmountField" size="30" />
+                        </td>
+                        <td align="left">
+                          Destination Account <br/>
+                        <input type="text" id="operationalDestinationField" size="30" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p align="right">
+                            <button type="button" onClick="oPsendXRP()">Send XRP ↑</button>
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td>
+                    <textarea id="operationalResultField" cols="60" rows="20" ></textarea>
+                  </td>
+                </tr>
+              </table>
+      </form>
+    </body>
+    <script src='send-xrp.js' async></script>
+  </html>
+  
